@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+
+<!-- namespace/id는 dao impl에 있음 -->
+   <select id="UserList"
+      resultType="com.green.user.vo.UserVo" >
+    SELECT ID, NAME, TEL FROM USER_TBL 
+      ORDER BY ID ASC
+  </select>
+  
+  <select id="GetUser" 
+    resultType="com.green.user.vo.UserVo">
+  	SELECT id,name,tel FROM user_tbl
+	where id = #{id}
+  </select>
+  
+  <insert id="UserInsert">
+        ( SELECT NVL(MAX(ID), 0) + 1 FROM USER_TBL ), 
+    INSERT INTO USER_TBL (ID, NAME, TEL)
+      VALUES ( 
+        #{name}, 
+        #{tel}   )
+  </insert>
+  
+  
+  <update id="UserUpdate">
+  	UPDATE user_tbl
+	SET NAME = #{name} , 
+		 TEL = #{tel}
+	WHERE ID= #{id}
+  </update>
+  
+  <delete id="Delete">
+  	DELETE FROM user_tbl 
+	WHERE ID = #{id}
+  </delete>
+  
+  
+<!-- sql문 저장하는 공간 -->
+  
+</mapper>
