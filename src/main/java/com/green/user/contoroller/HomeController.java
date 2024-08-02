@@ -25,15 +25,15 @@ public class HomeController{
 	public  String  list( Model model) {
 		
 		List<UserVo> list = userService.getUserList();
-		model.addAttribute("list", list);	
+		model.addAttribute("user_list", list);	
 		
-		return "list";     
+		return "list_user";     
 		
 	}  
 	
 	@RequestMapping("/User/WriteForm")
 	public  String  writeForm( ) {
-		return "write";     
+		return "sign_up";     
 	}  
 	
 	@RequestMapping("/User/Write")
@@ -42,41 +42,41 @@ public class HomeController{
 		userService.insertUser( vo );
 		return "redirect:/User/List";     
 	}  
-	
-	@RequestMapping("/User/View")
-	public  String  view( int id, Model model ) {
-		// db 저장
-		UserVo vo = userService.getUser(id);
-		model.addAttribute("user", vo);
-		return "view";     
-	}  
-	
-	@RequestMapping("/User/UpdateForm")
-	public  String  updateForm( int id, Model model ) {
-		
-		UserVo vo = userService.getUser(id);
-		model.addAttribute("user",vo);
-		
-		return "update";     
-	}  
-	
-	@RequestMapping("/User/Update")
-	public  String  update( UserVo vo) {
-		//UserVo vo는 String name String tel int id 이거 세 개 다 적은 것과 같은 효과가 있음 
-		
-		userService.updateUser(vo);
-		
-		return "redirect:/User/List";     
-	}  
-	
-	@RequestMapping("/User/Delete")
-	public String delete(int id) {
-		
-		userService.deleteUser(id);
-		
-		return"redirect:/User/List";
-		
-	}
+//	
+//	@RequestMapping("/User/View")
+//	public  String  view( int id, Model model ) {
+//		// db 저장
+//		UserVo vo = userService.getUser(id);
+//		model.addAttribute("user", vo);
+//		return "view";     
+//	}  
+//	
+//	@RequestMapping("/User/UpdateForm")
+//	public  String  updateForm( int id, Model model ) {
+//		
+//		UserVo vo = userService.getUser(id);
+//		model.addAttribute("user",vo);
+//		
+//		return "update";     
+//	}  
+//	
+//	@RequestMapping("/User/Update")
+//	public  String  update( UserVo vo) {
+//		//UserVo vo는 String name String tel int id 이거 세 개 다 적은 것과 같은 효과가 있음 
+//		
+//		userService.updateUser(vo);
+//		
+//		return "redirect:/User/List";     
+//	}  
+//	
+//	@RequestMapping("/User/Delete")
+//	public String delete(int id) {
+//		
+//		userService.deleteUser(id);
+//		
+//		return"redirect:/User/List";
+//		
+//	}
 	
 }
 

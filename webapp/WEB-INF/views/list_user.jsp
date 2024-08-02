@@ -23,12 +23,18 @@
 </head>
 <body>
     <a href="/User/WriteForm">회원추가</a> 
-    <h1>목록</h1>
+    <a href="/">홈으로</a> 
+    <h1>회원목록</h1>
    
-   <c:forEach var="user" items="${ list }">
+   <c:forEach var="user" items="${ user_list }">
      <ul>
-       <li>번호 : ${ user.id }</li>
-       <li>이름 : <a href="/User/View?id=${ user.id }">${ user.name }</a></li>
+       <li>회원번호 : ${ user.USER_SEQ }</li>
+       <li>ID : 
+       			${ user.USER_ID }
+<%--        		<a href="/User/View?id=${ user.USER_ID }">
+       			${ user.USER_ID }
+       		</a> --%>
+       </li>
      </ul>
     </c:forEach>
 </body>

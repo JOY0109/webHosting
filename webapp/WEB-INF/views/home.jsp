@@ -15,8 +15,8 @@
 </head>
 <body>
     <h1>Welcome Home</h1>
-    <a href="/User/List">목록</a> 
-    <a href="/User/WriteForm">회원추가</a> 
+    <a href="/User/List">회원목록</a> 
+   <!--  <a href="/User/WriteForm">회원추가</a> -->
 </body>
 </html>
 

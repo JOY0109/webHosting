@@ -27,6 +27,13 @@
 	    <artifactId>spring-jdbc</artifactId>
 	    <version>4.2.5.RELEASE</version>
 	</dependency>
+	
+	<!--mysql-connector-java -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>8.0.11</version>
+	</dependency>
 		
 	<!-- 컨넥션 풀을 위한 라리브러리 commons-dbcp 1.4 -->
 	<dependency>
@@ -47,6 +54,13 @@
 	    <artifactId>mybatis-spring</artifactId>
 	    <version>1.3.1</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>2.17.2</version>
+	</dependency>
+
 		
 	
 	<!-- jstl 1.2 사용 패키지가 javax.servlet 인것 -->

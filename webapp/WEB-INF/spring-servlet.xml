@@ -27,11 +27,17 @@
      </bean> 
   
      <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://my8003.gabiadb.com/joy0109?serverTimezone=Asia/Seoul&amp;useSSL=false" />
+        <property name="username" value="joy0109"/>
+        <property name="password" value="qq123qq!@#"/>
+    </bean>
+<!--      <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
         <property name="username" value="ex01"/>
         <property name="password" value="1234"/>
-    </bean>
+    </bean> -->
     
     <!-- mybatis와 spring 연결을 위한 sqlSessionFactory객체를 생성해 사용
     		db 연결 및 sql 명령 실행을 담당 바로 위에 있는 'dataSource' 내용을 참조해서 자동으로 연결-->
