@@ -18,7 +18,18 @@ public class HomeController{
 	
 	@RequestMapping("/")
 	public  String  home() {
+		return "main_index"; 
+	}
+	@RequestMapping("/test")
+	public  String  test() {
 		return "home"; 
+	}
+	
+	@RequestMapping("/loginChk")
+	public int loginChk() {
+		int result = 0;
+		System.out.println("jsp ok=====================================");
+		return result;
 	}
 	
 	@RequestMapping("/User/List")
