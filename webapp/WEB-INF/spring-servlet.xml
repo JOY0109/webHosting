@@ -16,7 +16,8 @@
 	<!-- css js img 사용 설정 -->
    <mvc:resources location="/WEB-INF/resources/css/" mapping="/css/**"/>
    <mvc:resources location="/WEB-INF/resources/js/" mapping="/js/**"/>
-   <mvc:resources location="/WEB-INF/resources/img/" mapping="/img/**"/>
+   <mvc:resources location="/WEB-INF/resources/media/" mapping="/media/**"/>
+   <mvc:resources location="/WEB-INF/resources/plugins/" mapping="/plugins/**"/>
 	
 	
 
