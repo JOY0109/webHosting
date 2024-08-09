@@ -18,7 +18,7 @@
 				   $.ajax({
 		                url : "/loginChk",
 		                type : "post",
-		                data: "test",
+		                data: $mainForm.serialize(),
 		                success : function(result) {
 		
 		                }

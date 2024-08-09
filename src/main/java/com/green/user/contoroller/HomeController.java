@@ -1,12 +1,17 @@
 package com.green.user.contoroller;
 
+import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.green.utils.ParameterInfo;
 import com.green.user.service.UserService;
 import com.green.user.vo.UserVo;
 
@@ -25,10 +30,16 @@ public class HomeController{
 		return "home"; 
 	}
 	
+	@ResponseBody
 	@RequestMapping("/loginChk")
-	public int loginChk() {
+	public int loginChk(HttpServletRequest request) {
 		int result = 0;
+		
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        ParameterInfo.getParameterInfo(request, hashMap);
+        
 		System.out.println("jsp ok=====================================");
+
 		return result;
 	}
 	
