@@ -87,15 +87,34 @@
 	    <version>2.17.2</version>
 	</dependency>
 
-		
-	
 	<!-- jstl 1.2 사용 패키지가 javax.servlet 인것 -->
 	<dependency>
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>jstl</artifactId>
 	    <version>1.2</version>
 	</dependency>
-	
+	<!-- Logging -->
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
+	<dependency>
+		<!-- for Quartz Scheduler -->
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+		<version>1.7.5</version>
+	</dependency>
+		<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>apache-log4j-extras</artifactId>
+		<version>1.2.17</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.lazyluke</groupId>
+	    <artifactId>log4jdbc-remix</artifactId>
+	    <version>0.2.7</version>
+	</dependency>
 	
 	
   </dependencies>

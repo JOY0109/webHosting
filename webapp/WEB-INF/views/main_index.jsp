@@ -13,14 +13,19 @@
 			   var $mainForm = $("#kt_sign_in_form");
 
 			   $("#kt_sign_in_submit").click(function(){
-				   alert('test');
-				   alert($mainForm);
 				   $.ajax({
 		                url : "/loginChk",
 		                type : "post",
 		                data: $mainForm.serialize(),
 		                success : function(result) {
-		
+							if(result==0){
+								alert("아이디없음");
+							}else if(result==1){
+								alert("로그인 성공");
+								location.href="/home";
+							}else{
+								alert("에러");
+							}
 		                }
 		            });
 
@@ -86,14 +91,14 @@
 							</div>
 							<!--end::Input group-->
 							<!--begin::Actions-->
-							<!-- <div class="text-center">
-								begin::Submit button
+							<div class="text-center">
+								<!-- begin::Submit button -->
 								<button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
 									<span class="indicator-label">Continue</span>
 									<span class="indicator-progress">Please wait...
 									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 								</button>
-								end::Submit button
+							<!-- 	end::Submit button
 								begin::Separator
 								<div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
 								end::Separator
@@ -108,8 +113,8 @@
 								begin::Google link
 								<a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100">
 								<img alt="Logo" src="media/svg/brand-logos/apple-black.svg" class="h-20px me-3" />Continue with Apple</a>
-								end::Google link
-							</div> -->
+								end::Google link -->
+							</div>
 							<!--end::Actions-->
 						</form>
 						<!--end::Form-->

@@ -7,8 +7,25 @@
 <!-- namespace/id는 dao impl에 있음 -->
    <select id="UserList"
       resultType="com.green.user.vo.UserVo" >
-    select *
-	from USER_INFO
+   SELECT USER_SEQ
+        , USER_ID
+        , USER_PW
+        , USER_NAME
+        , USER_BIRTH
+        , USER_TEL_NO
+        , AUTH
+        , `LEVEL`
+        , JOIN_DATE
+        , UPDATE_DATE
+     FROM joy0109.USER_INFO;
+  </select>
+  
+  <select id="loginChk" resultType="int">
+  	  SELECT COUNT(*)
+		FROM USER_INFO
+		WHERE 1=1
+		AND USER_ID = #{email}
+		AND USER_PW  =#{password}
   </select>
   
   <insert id="UserInsert">

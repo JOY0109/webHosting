@@ -1,6 +1,9 @@
 package com.green.user.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,16 @@ public class UserServiceImpl implements UserService{
 	private   UserDao  userDao;
 	
 	@Override
+	public int loginChk(HttpServletRequest request, HashMap<String, Object> hashMap) {
+
+		int result = 0;
+		
+		result = userDao.loginChk(hashMap);
+		
+		return result;
+	}
+	
+	@Override
 	public List<UserVo> getUserList() {
 		List<UserVo> list =  userDao.getUserList();
 		
@@ -28,23 +41,5 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
-	@Override
-	public UserVo getUser(int id) {
-		
-		UserVo vo = userDao.getUser(id);
-				
-		return vo;
-	}
 
-	@Override
-	public void updateUser(UserVo vo) {
-		userDao.updateUser(vo);
-		
-	}
-
-	@Override
-	public void deleteUser(int id) {
-		userDao.deletUser(id);
-		
-	}
 }

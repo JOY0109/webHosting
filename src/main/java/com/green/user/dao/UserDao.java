@@ -1,5 +1,6 @@
 package com.green.user.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.green.user.vo.UserVo;
@@ -10,10 +11,6 @@ public interface UserDao {
 
 	void insertUser(UserVo vo);
 
-	UserVo getUser(int id);
-
-	void updateUser(UserVo vo);
-
-	void deletUser(int id);
+	int loginChk(HashMap<String, Object> hashMap);
 
 }

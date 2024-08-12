@@ -1,5 +1,6 @@
 package com.green.user.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -28,23 +29,13 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public UserVo getUser(int id) {
-		UserVo vo = sqlSession.selectOne("User.GetUser",id); 
-		return vo;
+	public int loginChk(HashMap<String, Object> hashMap) {
+
+		int result = sqlSession.selectOne("User.loginChk",hashMap);
+		
+		return result;
 	}
 
-	@Override
-	public void updateUser(UserVo vo) {
-		sqlSession.update("User.UserUpdate",vo);
-		
-	}
-
-	@Override
-	public void deletUser(int id) {
-		sqlSession.delete("User.Delete",id);
-		
-	}
-	
 	
 
 }

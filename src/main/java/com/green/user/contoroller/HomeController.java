@@ -18,52 +18,19 @@ import com.green.user.vo.UserVo;
 @Controller
 public class HomeController{
 	
-	@Autowired
-	private UserService userService;
+	/*
+	 * @Autowired private UserService userService;
+	 */
 	
 	@RequestMapping("/")
 	public  String  home() {
 		return "main_index"; 
 	}
-	@RequestMapping("/test")
+	@RequestMapping("/home")
 	public  String  test() {
 		return "home"; 
 	}
-	
-	@ResponseBody
-	@RequestMapping("/loginChk")
-	public int loginChk(HttpServletRequest request) {
-		int result = 0;
-		
-		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        ParameterInfo.getParameterInfo(request, hashMap);
-        
-		System.out.println("jsp ok=====================================");
 
-		return result;
-	}
-	
-	@RequestMapping("/User/List")
-	public  String  list( Model model) {
-		
-		List<UserVo> list = userService.getUserList();
-		model.addAttribute("user_list", list);	
-		
-		return "list_user";     
-		
-	}  
-	
-	@RequestMapping("/User/WriteForm")
-	public  String  writeForm( ) {
-		return "sign_up";     
-	}  
-	
-	@RequestMapping("/User/Write")
-	public  String  write ( UserVo vo ) {
-		// db 저장
-		userService.insertUser( vo );
-		return "redirect:/User/List";     
-	}  
 //	
 //	@RequestMapping("/User/View")
 //	public  String  view( int id, Model model ) {

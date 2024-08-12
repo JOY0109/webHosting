@@ -20,6 +20,14 @@
      FROM joy0109.USER_INFO;
   </select>
   
+  <select id="loginChk" resultType="int">
+  	  SELECT COUNT(*)
+		FROM USER_INFO
+		WHERE 1=1
+		AND USER_ID = #{email}
+		AND USER_PW  =#{password}
+  </select>
+  
   <insert id="UserInsert">
     INSERT INTO USER_INFO
 		(USER_SEQ
