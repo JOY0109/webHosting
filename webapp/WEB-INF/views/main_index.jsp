@@ -11,59 +11,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> <!-- alert -->
 		<script>
 		   $(function() {
-			   
-			   //loginChk start
-			   var $mainForm = $("#kt_sign_in_form");
-			   $("#kt_sign_in_submit").click(function(){
-				   $.ajax({
-		                url : "/loginChk",
-		                type : "post",
-		                data: $mainForm.serialize(),
-		                success : function(result) {
-							if(result==0){
-								Swal.fire({
-			                        text: "죄송합니다. 아이디나 비밀번호를 확인해 주세요.",
-			                        icon: "error",
-			                        buttonsStyling: false,
-			                        confirmButtonText: "확인",
-			                        customClass: {
-			                            confirmButton: "btn btn-primary"
-			                        }
-			                    });
-							}else if(result==1){
-								Swal.fire({
-		                            text: "로그인 성공!",
-		                            icon: "success",
-		                            buttonsStyling: false,
-		                            confirmButtonText: "확인",
-		                            customClass: {
-		                                confirmButton: "btn btn-primary"
-		                            }
-		                        }).then(result => {
-		                            location.href="/home";
-		                        })
-								
-							}else{
-								Swal.fire({
-			                        text: "관리자에게 문의하세요",
-			                        icon: "error",
-			                        buttonsStyling: false,
-			                        confirmButtonText: "확인",
-			                        customClass: {
-			                            confirmButton: "btn btn-primary"
-			                        }
-			                    });
-							}
-		                }
-		            });
-
-				});//loginChk end
-			   
-			   $("#password").on("keyup", function(key){
-	                if(key.keyCode == 13) {
-	                    $("#kt_sign_in_submit").trigger("click");
-	                }
-	            });
+				//로그인 체크는 general.js에잇음
 		
 		   });
 		</script>
@@ -177,7 +125,7 @@
 		<script src="js/scripts.bundle.js"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Custom Javascript(used by this page)-->
-		<!-- <script src="js/custom/authentication/sign-in/general.js"></script> -->
+		<script src="js/custom/authentication/sign-in/general.js"></script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>
