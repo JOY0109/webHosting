@@ -90,9 +90,15 @@
 	<!-- jstl 1.2 사용 패키지가 javax.servlet 인것 -->
 	<dependency>
 	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.0.1</version>
+	    <scope>provided</scope>
+	</dependency>
+<!-- 	<dependency>
+	    <groupId>javax.servlet</groupId>
 	    <artifactId>jstl</artifactId>
 	    <version>1.2</version>
-	</dependency>
+	</dependency> -->
 	<!-- Logging -->
 	<dependency>
 		<groupId>log4j</groupId>

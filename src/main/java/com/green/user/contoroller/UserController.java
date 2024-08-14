@@ -24,7 +24,6 @@ public class UserController{
 	@ResponseBody
 	@RequestMapping("/loginChk")
 	public int loginChk(HttpServletRequest request) {
-		System.out.println("jsp ok=====================================");
 
 		int result = 0;
 		
@@ -33,20 +32,8 @@ public class UserController{
         
         result = userService.loginChk(request,hashMap);
         
-        System.out.println("result=====================================" + result);
-
 		return result;
 	}
-	
-	@RequestMapping("/User/List")
-	public  String  list( Model model) {
-		
-		List<UserVo> list = userService.getUserList();
-		model.addAttribute("user_list", list);	
-		
-		return "list_user";     
-		
-	}  
 	
 	@RequestMapping("/User/WriteForm")
 	public  String  writeForm( ) {
@@ -59,6 +46,20 @@ public class UserController{
 		userService.insertUser( vo );
 		return "redirect:/User/List";     
 	}  
+	
+	
+	@RequestMapping("/User/List")
+	public  String  list( Model model) {
+		
+		List<UserVo> list = userService.getUserList();
+		model.addAttribute("user_list", list);	
+		
+		return "list_user";     
+	//	return "list_user";     
+		
+	}  
+	
+	
 
 	
 }

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,14 +22,14 @@
 </head>
 <body>
     <a href="/User/WriteForm">회원추가</a> 
-    <a href="/">홈으로</a> 
+    <a href="/home">홈으로</a> 
     <h1>회원목록</h1>
    
    <c:forEach var="user" items="${ user_list }">
      <ul>
        <li>회원번호 : ${ user.USER_SEQ }</li>
-       <li>ID : 
-       			${ user.USER_ID }
+       <li>이름 : 
+       			${ user.USER_NAME }
 <%--        		<a href="/User/View?id=${ user.USER_ID }">
        			${ user.USER_ID }
        		</a> --%>

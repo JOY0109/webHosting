@@ -5,19 +5,22 @@
 <mapper namespace="User">
 
 <!-- namespace/id는 dao impl에 있음 -->
-   <select id="UserList"
-      resultType="com.green.user.vo.UserVo" >
-   SELECT USER_SEQ
-        , USER_ID
-        , USER_PW
-        , USER_NAME
-        , USER_BIRTH
-        , USER_TEL_NO
-        , AUTH
-        , `LEVEL`
-        , JOIN_DATE
-        , UPDATE_DATE
-     FROM joy0109.USER_INFO;
+   <select id="UserList" resultType="com.green.user.vo.UserVo" >
+    SELECT USER_SEQ
+		 , USER_NAME
+		 , USER_EMP_NUM
+		 , USER_BIRTH
+		 , USER_ID
+		 , USER_PW
+		 , USER_TEL1
+		 , USER_TEL2
+		 , USER_DEP_NUM
+		 , USER_NICK
+		 , AUTH
+		 , `LEVEL`
+		 , JOIN_DATE
+		 , UPDATE_DATE
+	FROM USER_INFO;
   </select>
   
   <select id="loginChk" resultType="int">
@@ -29,32 +32,43 @@
   </select>
   
   <insert id="UserInsert">
-    INSERT INTO USER_INFO
-		(USER_SEQ
-		, USER_ID
-		, USER_PW
-		, USER_NAME
-		, USER_BIRTH
-		
-		, USER_TEL_NO
-		, AUTH
-		, `LEVEL`
-		, JOIN_DATE
-		, UPDATE_DATE)
-	VALUES((SELECT  aa.USER_SEQ 
+	    INSERT INTO joy0109.USER_INFO (
+			USER_SEQ
+		  , USER_NAME
+		  , USER_EMP_NUM
+		  , USER_BIRTH
+		  , USER_ID
+		  
+		  , USER_PW
+		  , USER_TEL1
+		  , USER_TEL2
+		  , USER_DEP_NUM
+		  , USER_NICK
+		  
+		  , AUTH
+		  , `LEVEL`
+		  , JOIN_DATE
+		  , UPDATE_DATE)
+								
+	VALUES(	(SELECT  aa.USER_SEQ 
 			  FROM( select IFNULL(max(USER_SEQ)+1 , CONCAT(CURDATE()+0,'001')) as USER_SEQ
-				      from USER_INFO where SUBSTR(USER_SEQ,1,8) =  CURDATE()+0
+					  from USER_INFO where SUBSTR(USER_SEQ,1,8) =  CURDATE()+0
 			) AS aa)
-		 , #{USER_ID}
-		 , #{USER_PW}
-		 , #{USER_NAME}
-		 , #{USER_BIRTH}
-		
-		 , #{USER_TEL_NO}
-		 , #{AUTH}
-		 , #{LEVEL}
-		 , NOW()
-		 , CURRENT_TIMESTAMP);
+		,#{USER_NAME}
+		,#{USER_EMP_NUM}
+		,#{USER_BIRTH}
+		,#{USER_ID}
+	
+		,#{USER_PW}
+		,#{USER_TEL1}
+		,#{USER_TEL2}
+		,#{USER_DEP_NUM}
+		,#{USER_NICK}
+	
+		,#{AUTH}
+		,#{LEVEL}
+		, NOW()
+		, CURRENT_TIMESTAMP);
   </insert>
   
   

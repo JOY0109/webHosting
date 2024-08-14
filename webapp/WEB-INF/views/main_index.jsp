@@ -8,10 +8,12 @@
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 		<link href="plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> <!-- alert -->
 		<script>
 		   $(function() {
+			   
+			   //loginChk start
 			   var $mainForm = $("#kt_sign_in_form");
-
 			   $("#kt_sign_in_submit").click(function(){
 				   $.ajax({
 		                url : "/loginChk",
@@ -19,18 +21,49 @@
 		                data: $mainForm.serialize(),
 		                success : function(result) {
 							if(result==0){
-								alert("아이디없음");
+								Swal.fire({
+			                        text: "죄송합니다. 아이디나 비밀번호를 확인해 주세요.",
+			                        icon: "error",
+			                        buttonsStyling: false,
+			                        confirmButtonText: "확인",
+			                        customClass: {
+			                            confirmButton: "btn btn-primary"
+			                        }
+			                    });
 							}else if(result==1){
-								alert("로그인 성공");
-								location.href="/home";
+								Swal.fire({
+		                            text: "로그인 성공!",
+		                            icon: "success",
+		                            buttonsStyling: false,
+		                            confirmButtonText: "확인",
+		                            customClass: {
+		                                confirmButton: "btn btn-primary"
+		                            }
+		                        }).then(result => {
+		                            location.href="/home";
+		                        })
+								
 							}else{
-								alert("에러");
+								Swal.fire({
+			                        text: "관리자에게 문의하세요",
+			                        icon: "error",
+			                        buttonsStyling: false,
+			                        confirmButtonText: "확인",
+			                        customClass: {
+			                            confirmButton: "btn btn-primary"
+			                        }
+			                    });
 							}
 		                }
 		            });
 
-				});
+				});//loginChk end
 			   
+			   $("#password").on("keyup", function(key){
+	                if(key.keyCode == 13) {
+	                    $("#kt_sign_in_submit").trigger("click");
+	                }
+	            });
 		
 		   });
 		</script>
@@ -59,7 +92,7 @@
 								<!--end::Title-->
 								<!--begin::Link-->
 								<div class="text-gray-400 fw-bold fs-4">New Here?
-								<a href="../../demo1/dist/authentication/layouts/basic/sign-up.html" class="link-primary fw-bolder">Create an Account</a></div>
+								<a href="/User/WriteForm" class="link-primary fw-bolder">Create an Account</a></div>
 								<!--end::Link-->
 							</div>
 							<!--begin::Heading-->
@@ -86,7 +119,7 @@
 								</div>
 								<!--end::Wrapper-->
 								<!--begin::Input-->
-								<input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" />
+								<input class="form-control form-control-lg form-control-solid" type="password" name="password" id="password" autocomplete="off" />
 								<!--end::Input-->
 							</div>
 							<!--end::Input group-->
@@ -94,9 +127,9 @@
 							<div class="text-center">
 								<!-- begin::Submit button -->
 								<button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
-									<span class="indicator-label">Continue</span>
-									<span class="indicator-progress">Please wait...
-									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+									<span class="indicator-label">로그인</span>
+									<!-- <span class="indicator-progress">Please wait...
+									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span> -->
 								</button>
 							<!-- 	end::Submit button
 								begin::Separator
@@ -139,13 +172,12 @@
 		<!--end::Root-->
 		<!--end::Main-->
 		<!--begin::Javascript-->
-		<script>var hostUrl = "";</script>
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="plugins/global/plugins.bundle.js"></script>
 		<script src="js/scripts.bundle.js"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Custom Javascript(used by this page)-->
-		<script src="js/custom/authentication/sign-in/general.js"></script>
+		<!-- <script src="js/custom/authentication/sign-in/general.js"></script> -->
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

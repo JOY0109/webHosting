@@ -4,65 +4,65 @@ import com.green.utils.JsonUtil;
 
 public class UserVo {
 	
-	private int id;
-	private String name;
-	private String tel;
 	private String USER_SEQ;
+	private String USER_NAME;
+	private String USER_EMP_NUM;
+	private String USER_BIRTH;
 	private String USER_ID;
 	private String USER_PW;
-	private String USER_NAME;
-	private String USER_BIRTH;
-	private String USER_TEL_NO;
+	private String USER_TEL1;
+	private String USER_TEL2;
+	private String USER_DEP_NUM;
+	private String USER_NICK;
 	private String AUTH;
 	private String LEVEL;
 	private String JOIN_DATE;
 	private String UPDATE_DATE;
+
 	
 	
 	public UserVo() {}
-	public UserVo(int id, String name, String tel,String USER_SEQ,String USER_ID,String USER_PW,String USER_NAME,String USER_BIRTH,  String USER_TEL_NO, String AUTH,String LEVEL,String JOIN_DATE,String UPDATE_DATE) {
-		this.id = id;
-		this.name = name;
-		this.tel = tel;
-		this.USER_SEQ	  =	USER_SEQ;
-		this.USER_ID      = USER_ID;
-		this.USER_PW      = USER_PW;
-		this.USER_NAME    = USER_NAME;
-		this.USER_BIRTH   = USER_BIRTH;
-		this.USER_TEL_NO  = USER_TEL_NO;
-		this.AUTH         = AUTH;
-		this.LEVEL        = LEVEL;
-		this.JOIN_DATE    = JOIN_DATE;
-		this.UPDATE_DATE  = UPDATE_DATE;
+	public UserVo(String USER_SEQ ,String USER_NAME ,String USER_EMP_NUM ,String USER_BIRTH ,String USER_ID ,String USER_PW ,String USER_TEL1 ,String USER_TEL2 ,String USER_DEP_NUM ,String USER_NICK 
+			,String AUTH ,String LEVEL ,String JOIN_DATE ,String UPDATE_DATE ) {
+		this.USER_SEQ		 = USER_SEQ;
+		this.USER_NAME       = USER_NAME;
+		this.USER_EMP_NUM    = USER_EMP_NUM;
+		this.USER_BIRTH      = USER_BIRTH;
+		this.USER_ID         = USER_ID;
+		this.USER_PW         = USER_PW;
+		this.USER_TEL1       = USER_TEL1;
+		this.USER_TEL2       = USER_TEL2;
+		this.USER_DEP_NUM    = USER_DEP_NUM;
+		this.USER_NICK       = USER_NICK;
+		this.AUTH            = AUTH;
+		this.LEVEL           = LEVEL;
+		this.JOIN_DATE       = JOIN_DATE;
+		this.UPDATE_DATE     = UPDATE_DATE;
 	}
 	
-	
-	
-	
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getTel() {
-		return tel;
-	}
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
 	public String getUSER_SEQ() {
 		return USER_SEQ;
 	}
 	public void setUSER_SEQ(String uSER_SEQ) {
 		USER_SEQ = uSER_SEQ;
+	}
+	public String getUSER_NAME() {
+		return USER_NAME;
+	}
+	public void setUSER_NAME(String uSER_NAME) {
+		USER_NAME = uSER_NAME;
+	}
+	public String getUSER_EMP_NUM() {
+		return USER_EMP_NUM;
+	}
+	public void setUSER_EMP_NUM(String uSER_EMP_NUM) {
+		USER_EMP_NUM = uSER_EMP_NUM;
+	}
+	public String getUSER_BIRTH() {
+		return USER_BIRTH;
+	}
+	public void setUSER_BIRTH(String uSER_BIRTH) {
+		USER_BIRTH = uSER_BIRTH;
 	}
 	public String getUSER_ID() {
 		return USER_ID;
@@ -76,23 +76,29 @@ public class UserVo {
 	public void setUSER_PW(String uSER_PW) {
 		USER_PW = uSER_PW;
 	}
-	public String getUSER_NAME() {
-		return USER_NAME;
+	public String getUSER_TEL1() {
+		return USER_TEL1;
 	}
-	public void setUSER_NAME(String uSER_NAME) {
-		USER_NAME = uSER_NAME;
+	public void setUSER_TEL1(String uSER_TEL1) {
+		USER_TEL1 = uSER_TEL1;
 	}
-	public String getUSER_BIRTH() {
-		return USER_BIRTH;
+	public String getUSER_TEL2() {
+		return USER_TEL2;
 	}
-	public void setUSER_BIRTH(String uSER_BIRTH) {
-		USER_BIRTH = uSER_BIRTH;
+	public void setUSER_TEL2(String uSER_TEL2) {
+		USER_TEL2 = uSER_TEL2;
 	}
-	public String getUSER_TEL_NO() {
-		return USER_TEL_NO;
+	public String getUSER_DEP_NUM() {
+		return USER_DEP_NUM;
 	}
-	public void setUSER_TEL_NO(String uSER_TEL_NO) {
-		USER_TEL_NO = uSER_TEL_NO;
+	public void setUSER_DEP_NUM(String uSER_DEP_NUM) {
+		USER_DEP_NUM = uSER_DEP_NUM;
+	}
+	public String getUSER_NICK() {
+		return USER_NICK;
+	}
+	public void setUSER_NICK(String uSER_NICK) {
+		USER_NICK = uSER_NICK;
 	}
 	public String getAUTH() {
 		return AUTH;
