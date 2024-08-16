@@ -66,24 +66,51 @@ var KTSigninGeneral = function() {
                         // Enable button
                         submitButton.disabled = false;
 
-                        // Show message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-                        Swal.fire({
-                            //text: "You have successfully logged in!",
-                            text: "로그인 성공!",
-                            icon: "success",
-                            buttonsStyling: false,
-                            //confirmButtonText: "Ok, got it!",
-                            confirmButtonText: "확인",
-                            customClass: {
-                                confirmButton: "btn btn-primary"
-                            }
-                        }).then(function (result) {
-                            if (result.isConfirmed) { 
-                                form.querySelector('[name="email"]').value= "";
-                                form.querySelector('[name="password"]').value= "";                                
-                                //form.submit(); // submit form
-                            }
-                        });
+         			   //loginChk start
+         			   var $mainForm = $("#kt_sign_in_form");
+         				   $.ajax({
+         		                url : "/loginChk",
+         		                type : "post",
+         		                data: $mainForm.serialize(),
+         		                success : function(result) {
+         							if(result==0){
+         								Swal.fire({
+         			                        text: "죄송합니다. 아이디나 비밀번호를 확인해 주세요.",
+         			                        icon: "error",
+         			                        buttonsStyling: false,
+         			                        confirmButtonText: "확인",
+         			                        customClass: {
+         			                            confirmButton: "btn btn-primary"
+         			                        }
+         			                    });
+         							}else if(result==1){
+         								Swal.fire({
+         		                            text: "로그인 성공!",
+         		                            icon: "success",
+         		                            buttonsStyling: false,
+         		                            confirmButtonText: "확인",
+         		                            customClass: {
+         		                                confirmButton: "btn btn-primary"
+         		                            }
+         		                        }).then(result => {
+         		                            location.href="/home";
+         		                        })
+         								
+         							}else{
+         								Swal.fire({
+         			                        text: "관리자에게 문의하세요",
+         			                        icon: "error",
+         			                        buttonsStyling: false,
+         			                        confirmButtonText: "확인",
+         			                        customClass: {
+         			                            confirmButton: "btn btn-primary"
+         			                        }
+         			                    });
+         							}
+         		                }
+         		            });
+
+                        
                     }, 2000);   						
                 } else {
                     // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/

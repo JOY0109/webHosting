@@ -89,7 +89,7 @@ var KTSignupGeneral = function() {
                         submitButton.disabled = false;
 
                         // Show message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-                        /*Swal.fire({
+                        Swal.fire({
                             text: "You have successfully reset your password!",
                             icon: "success",
                             buttonsStyling: false,
@@ -103,10 +103,10 @@ var KTSignupGeneral = function() {
                                 passwordMeter.reset();  // reset password meter
                                 //form.submit();
                             }
-                        });*/
+                        });
                     }, 1500);   						
                 } 
-/*		        else {
+		        else {
                     // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                     Swal.fire({
                         text: "죄송합니다. 다시 시도해 주세요.",
@@ -118,7 +118,7 @@ var KTSignupGeneral = function() {
                             confirmButton: "btn btn-primary"
                         }
                     });
-                }*/
+                }
 		    });
         });
 
