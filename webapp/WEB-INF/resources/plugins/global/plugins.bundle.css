@@ -31774,3 +31774,38 @@ body {
 .vis-timeline-custom .vis-item .vis-item-content {
   padding: 0 !important;
 }
+.bg-secondary {
+    background-color: #6c757d !important; /* 기본 색상 */
+}
+
+.bg-success-1 {
+    background-color: #d9f7be !important; /* 밝은 파스텔 그린 (형광 느낌의 연한 색상) */
+}
+
+.bg-success-2 {
+    background-color: #b9fbc0 !important; /* 연한 파스텔 그린 (조금 더 진한 색상) */
+}
+
+.bg-success-3 {
+    background-color: #8df4a8 !important; /* 중간 톤의 파스텔 그린 (좀 더 눈에 띄는 색상) */
+}
+
+.bg-success-4 {
+    background-color: #62d1a2 !important; /* 진한 파스텔 그린 (형광 느낌이 있는 색상) */
+}
+
+
+
+.h-5px {
+    height: 5px !important; /* 높이 설정 */
+}
+
+.rounded {
+    border-radius: .25rem !important; /* 모서리 둥글기 설정 */
+}
+
+.password-meter {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}

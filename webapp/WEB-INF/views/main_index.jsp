@@ -5,9 +5,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>home</title>
-		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 		<link href="plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> <!-- alert -->
 		<script>
 		   $(function() {

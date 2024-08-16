@@ -1,155 +1,176 @@
 "use strict";
-
-// Class definition
 var KTSignupGeneral = function() {
-    // Elements
-    var form;
-    var submitButton;
-    var validator;
-    var passwordMeter;
+    var e, t, a, s, r = function() {
+        return 100 === s.getScore();
+    };
 
-    // Handle form
-    var handleForm  = function(e) {
-        // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
-        validator = FormValidation.formValidation(
-			form,
-			{
-				fields: {
-					'usrCurPwd': {
-                        validators: {
-                            notEmpty: {
-                                message: '현재 비밀번호 필수입력입니다.'
-                            },
-                        }
-                    },
-                    'password': {
-                        validators: {
-                            notEmpty: {
-                                message: '비밀번호 필수입력입니다.'
-                            },
-                            callback: {
-                                message: '비밀번호 조건을 확인해 주세요',
-                                callback: function(input) {
-                                    if (input.value.length > 0) {
-                                        return validatePassword();
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    'confirm-password': {
-                        validators: {
-                            notEmpty: {
-                                message: '비밀번호 확인 필수입력입니다. '
-                            },
-                            identical: {
-                                compare: function() {
-                                    return form.querySelector('[name="password"]').value;
-                                },
-                                message: '새 비밀번호와 비밀번호가 다릅니다.'
-                            }
-                        }
-                    },
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger({
-                        event: {
-                            password: false
-                        }  
-                    }),
-					bootstrap: new FormValidation.plugins.Bootstrap5({
-                        rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
-                    })
-				}
-			}
-		);
+    function calculatePasswordStrength(password) {
+        let score = 0;
+        if (password.length >= 8) score += 1;
+        if (/[a-z]/.test(password)) score += 1;
+        if (/[A-Z]/.test(password)) score += 1;
+        if (/[0-9]/.test(password)) score += 1;
+        if (/[^a-zA-Z0-9]/.test(password)) score += 1;
+        return Math.min(score, 4); // 강도는 최대 4단계로 설정
+    }
 
-        // Handle form submit
-        submitButton.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            validator.revalidateField('password');
-
-            validator.validate().then(function(status) {
-		        if (status == 'Valid') {
-                    // Show loading indication
-                    submitButton.setAttribute('data-kt-indicator', 'on');
-
-                    // Disable button to avoid multiple click 
-                    submitButton.disabled = true;
-
-                    // Simulate ajax request
-                    setTimeout(function() {
-                        // Hide loading indication
-                        submitButton.removeAttribute('data-kt-indicator');
-
-                        // Enable button
-                        submitButton.disabled = false;
-
-                        // Show message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-                        Swal.fire({
-                            text: "You have successfully reset your password!",
-                            icon: "success",
-                            buttonsStyling: false,
-                            confirmButtonText: "확인",
-                            customClass: {
-                                confirmButton: "btn btn-primary"
-                            }
-                        }).then(function (result) {
-                            if (result.isConfirmed) { 
-                                form.reset();  // reset form                    
-                                passwordMeter.reset();  // reset password meter
-                                //form.submit();
-                            }
-                        });
-                    }, 1500);   						
-                } 
-		        else {
-                    // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-                    Swal.fire({
-                        text: "죄송합니다. 다시 시도해 주세요.",
-                        // text: "Sorry, looks like there are some errors detected, please try again.",
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "확인",
-                        customClass: {
-                            confirmButton: "btn btn-primary"
-                        }
-                    });
-                }
-		    });
-        });
-
-        // Handle password input
-        form.querySelector('input[name="password"]').addEventListener('input', function() {
-            if (this.value.length > 0) {
-                validator.updateFieldStatus('password', 'NotValidated');
+    function updatePasswordMeter(score) {
+        const colors = ['bg-success-1', 'bg-success-2', 'bg-success-3', 'bg-success-4'];
+        const meters = document.querySelectorAll('.password-meter div');
+        meters.forEach((meter, index) => {
+            if (index < score) {
+                meter.classList.remove('bg-secondary');
+                meter.classList.add(colors[index]);
+            } else {
+                meter.classList.remove(...colors);
+                meter.classList.add('bg-secondary');
             }
         });
     }
 
-    // Password input validation
-    var validatePassword = function() {
-        return  (passwordMeter.getScore() === 100);
-    }
-
-    // Public functions
     return {
-        // Initialization
         init: function() {
-            // Elements
-            form = document.querySelector('#form');
-            submitButton = document.querySelector('#userPassword');
-            passwordMeter = KTPasswordMeter.getInstance(form.querySelector('[data-kt-password-meter="true"]'));
+            e = document.querySelector("#kt_sign_up_form");
+            t = document.querySelector("#kt_sign_up_submit");
+            s = KTPasswordMeter.getInstance(e.querySelector('[data-kt-password-meter="true"]'));
+            a = FormValidation.formValidation(e, {
+                fields: {
+                    "first-name": {
+                        validators: {
+                            notEmpty: {
+                                message: "First Name is required"
+                            }
+                        }
+                    },
+                    "last-name": {
+                        validators: {
+                            notEmpty: {
+                                message: "Last Name is required"
+                            }
+                        }
+                    },
+                    email: {
+                        validators: {
+                            notEmpty: {
+                                message: "Email address is required"
+                            },
+                            emailAddress: {
+                                message: "The value is not a valid email address"
+                            }
+                        }
+                    },
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: "The password is required"
+                            },
+                            callback: {
+                                message: "Please enter valid password",
+                                callback: function(e) {
+                                    if (e.value.length > 0) return r();
+                                }
+                            }
+                        }
+                    },
+                    "confirm-password": {
+                        validators: {
+                            notEmpty: {
+                                message: "The password confirmation is required"
+                            },
+                            identical: {
+                                compare: function() {
+                                    return e.querySelector('[name="password"]').value;
+                                },
+                                message: "The password and its confirm are not the same"
+                            }
+                        }
+                    },
+                    toc: {
+                        validators: {
+                            notEmpty: {
+                                message: "You must accept the terms and conditions"
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger({
+                        event: {
+                            password: !1
+                        }
+                    }),
+                    bootstrap: new FormValidation.plugins.Bootstrap5({
+                        rowSelector: ".fv-row",
+                        eleInvalidClass: "",
+                        eleValidClass: ""
+                    })
+                }
+            });
 
-            handleForm ();
+            t.addEventListener("click", function(r) {
+                r.preventDefault();
+                a.revalidateField("password");
+                a.validate().then(function(a) {
+                    if ("Valid" === a) {
+                        t.setAttribute("data-kt-indicator", "on");
+                        t.disabled = !0;
+                        setTimeout(function() {
+                            t.removeAttribute("data-kt-indicator");
+                            t.disabled = !1;
+                            Swal.fire({
+                                text: "You have successfully reset your password!",
+                                icon: "success",
+                                buttonsStyling: !1,
+                                confirmButtonText: "Ok, got it!",
+                                customClass: {
+                                    confirmButton: "btn btn-primary"
+                                }
+                            }).then(function(t) {
+                                if (t.isConfirmed) {
+                                    e.reset();
+                                    s.reset();
+                                }
+                            });
+                        }, 1500);
+                    } else {
+                        Swal.fire({
+                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            icon: "error",
+                            buttonsStyling: !1,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    }
+                });
+            });
+
+            e.querySelector('input[name="password"]').addEventListener("input", function() {
+                const password = this.value;
+                const score = calculatePasswordStrength(password);
+                updatePasswordMeter(score);
+                this.value.length > 0 && a.updateFieldStatus("password", "NotValidated");
+            });
+
+            document.getElementById('password-visibility-toggle').addEventListener('click', function () {
+                const passwordInput = document.querySelector('input[name="password"]');
+                const eyeSlash = this.querySelector('.bi-eye-slash');
+                const eye = this.querySelector('.bi-eye');
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    eyeSlash.classList.add('d-none');
+                    eye.classList.remove('d-none');
+                } else {
+                    passwordInput.type = 'password';
+                    eyeSlash.classList.remove('d-none');
+                    eye.classList.add('d-none');
+                }
+            });
         }
-    };
+    }
 }();
 
-// On document ready
 KTUtil.onDOMContentLoaded(function() {
     KTSignupGeneral.init();
 });
