@@ -30,22 +30,38 @@
                         </div>
                         <div class="row fv-row mb-7">
                             <div class="col-xl-6">
-                                <label class="form-label fw-bolder text-dark fs-6">First Name</label>
-                                <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="first-name" autocomplete="off" />
+                                <label class="form-label fw-bolder text-dark fs-6">이름(실명)</label>
+                                <input class="form-control form-control-lg form-control-solid" type="text" name="USER_NAME" autocomplete="off" />
                             </div>
                             <div class="col-xl-6">
-                                <label class="form-label fw-bolder text-dark fs-6">Last Name</label>
-                                <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="last-name" autocomplete="off" />
+                                <label class="form-label fw-bolder text-dark fs-6">닉네임(부서/이름/직급)</label>
+                                <input class="form-control form-control-lg form-control-solid" type="text" placeholder="경영지원팀/김철수/사원"  name="USER_NICK" autocomplete="off" />
                             </div>
                         </div>
                         <div class="fv-row mb-10">
-                            <label class="form-label fw-bolder text-dark fs-6">Email</label>
-                            <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" autocomplete="off" />
+                            <label class="form-label fw-bolder text-dark fs-6">생년월일</label>
+                            <input class="form-control form-control-lg form-control-solid" type="date" name="USER_BIRTH"  />
+                        </div>
+                        <div class="fv-row mb-10">
+                            <label class="form-label fw-bolder text-dark fs-6">연락처1</label>
+                            <input class="form-control form-control-lg form-control-solid" type="tel" name="USER_TEL1"  placeholder="010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"/>
+                        </div>
+                        <div class="fv-row mb-10">
+                            <label class="form-label fw-bolder text-dark fs-6">연락처2</label>
+                            <input class="form-control form-control-lg form-control-solid" type="tel" name="USER_TEL2" placeholder ="02-1234-5678" />
+                        </div>
+                        <div class="fv-row mb-10">
+                            <label class="form-label fw-bolder text-dark fs-6">부서명</label>
+                            <input class="form-control form-control-lg form-control-solid" type="tel" name="USER_DEP_NUM"  />
+                        </div>
+                        <div class="fv-row mb-10">
+                            <label class="form-label fw-bolder text-dark fs-6">Email(ID로 사용)</label>
+                            <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="USER_ID" autocomplete="off" />
                         </div>
                         <div class="fv-row mb-10">
                             <label class="form-label fw-bolder text-dark fs-6">Password</label>
                             <div class="position-relative mb-3">
-                                <input id="password" class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" autocomplete="off" />
+                                <input type="password"  class="form-control form-control-lg form-control-solid" placeholder="" name="USER_PW" autocomplete="off" />
                                 <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" id="password-visibility-toggle">
                                     <i class="bi bi-eye-slash fs-2"></i>
                                     <i class="bi bi-eye fs-2 d-none"></i>

@@ -29,7 +29,7 @@
   
      <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
-        <property name="url" value="jdbc:log4jdbc:mysql://my8003.gabiadb.com/joy0109?serverTimezone=Asia/Seoul&amp;useSSL=false" />
+        <property name="url" value="jdbc:log4jdbc:mysql://my8003.gabiadb.com/joy0109?serverTimezone=Asia/Seoul&amp;useSSL=false&amp;autoReconnect=true" /> 
         <property name="username" value="joy0109"/>
         <property name="password" value="qq123qq!@#"/>
     </bean>

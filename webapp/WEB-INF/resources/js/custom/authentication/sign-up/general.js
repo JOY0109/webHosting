@@ -35,7 +35,7 @@ var KTSignupGeneral = function() {
             s = KTPasswordMeter.getInstance(e.querySelector('[data-kt-password-meter="true"]'));
             a = FormValidation.formValidation(e, {
                 fields: {
-                    "first-name": {
+                    "USER_NAME": {
                         validators: {
                             notEmpty: {
                                 message: "First Name is required"
@@ -49,17 +49,24 @@ var KTSignupGeneral = function() {
                             }
                         }
                     },
-                    email: {
+                    "USER_BIRTH": {
                         validators: {
                             notEmpty: {
-                                message: "Email address is required"
+                                message: "생일입력필수"
+                            }
+                        }
+                    },
+                    "USER_ID": {
+                        validators: {
+                            notEmpty: {
+                                message: "Email address is 필수"
                             },
                             emailAddress: {
                                 message: "The value is not a valid email address"
                             }
                         }
                     },
-                    password: {
+                    "USER_PW": {
                         validators: {
                             notEmpty: {
                                 message: "The password is required"
@@ -96,7 +103,7 @@ var KTSignupGeneral = function() {
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger({
                         event: {
-                            password: !1
+                            "USER_PW": !1
                         }
                     }),
                     bootstrap: new FormValidation.plugins.Bootstrap5({
@@ -109,7 +116,7 @@ var KTSignupGeneral = function() {
 
             t.addEventListener("click", function(r) {
                 r.preventDefault();
-                a.revalidateField("password");
+                a.revalidateField("USER_PW");
                 a.validate().then(function(a) {
                     if ("Valid" === a) {
                         t.setAttribute("data-kt-indicator", "on");
@@ -127,6 +134,8 @@ var KTSignupGeneral = function() {
                                 }
                             }).then(function(t) {
                                 if (t.isConfirmed) {
+                                	// 폼 제출 (추가됨)
+                                	e.submit(); 
                                     e.reset();
                                     s.reset();
                                 }
@@ -146,15 +155,15 @@ var KTSignupGeneral = function() {
                 });
             });
 
-            e.querySelector('input[name="password"]').addEventListener("input", function() {
+            e.querySelector('input[name="USER_PW"]').addEventListener("input", function() {
                 const password = this.value;
                 const score = calculatePasswordStrength(password);
                 updatePasswordMeter(score);
-                this.value.length > 0 && a.updateFieldStatus("password", "NotValidated");
+                this.value.length > 0 && a.updateFieldStatus("USER_PW", "NotValidated");
             });
 
             document.getElementById('password-visibility-toggle').addEventListener('click', function () {
-                const passwordInput = document.querySelector('input[name="password"]');
+                const passwordInput = document.querySelector('input[name="USER_PW"]');
                 const eyeSlash = this.querySelector('.bi-eye-slash');
                 const eye = this.querySelector('.bi-eye');
                 if (passwordInput.type === 'password') {
@@ -163,7 +172,7 @@ var KTSignupGeneral = function() {
                     eye.classList.remove('d-none');
                 } else {
                     passwordInput.type = 'password';
-                    eyeSlash.classList.remove('d-none');
+                    eyeSlash.classList.remove('d-none');L
                     eye.classList.add('d-none');
                 }
             });
