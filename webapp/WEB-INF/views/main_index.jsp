@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>home</title>
+	<title>로그인</title>
 		<link href="plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.green.user.dao.UserDao;
 import com.green.user.service.UserService;
+import com.green.user.vo.CalendarVo;
 import com.green.user.vo.UserVo;
 
 @Service("userService")
@@ -39,6 +40,20 @@ public class UserServiceImpl implements UserService{
 	public void insertUser(UserVo vo) {
 		userDao.insertUser(vo);
 		
+	}
+
+	@Override
+	public List<CalendarVo> getCalendarList() {
+		List<CalendarVo> list = userDao.getCalendarList();
+		
+		//js에 보낼 형식으로 가공 
+		
+		return list;
+	}
+	
+	@Override
+	public void insertCalendar(CalendarVo vo) {
+		userDao.insertCalendar(vo);
 	}
 
 

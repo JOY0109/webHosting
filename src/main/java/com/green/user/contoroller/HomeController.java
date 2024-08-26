@@ -23,11 +23,12 @@ public class HomeController{
 	 */
 	
 	@RequestMapping("/")
-	public  String  home() {
+	public  String  main() {
 		return "main_index"; 
 	}
+	
 	@RequestMapping("/home")
-	public  String  test() {
+	public  String  home() {
 		return "home"; 
 	}
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="calendar">
+
+	<select id="calendarList" resultType="com.green.user.vo.CalendarVo" >
+		SELECT CALENDER_SEQ
+		     , EVENT_NAME
+		     , EVENT_DESCRIPTION
+		     , EVENT_LOCATION
+		     , ALL_DAY_YN
+		     , EVENT_START_DT
+		     , EVENT_END_DT
+		     , EVENT_START_TM
+		     , EVENT_END_TM
+		     , USER_SEQ
+		     , CREATE_TIME
+		FROM CALENDER
+	</select>
+	
+	
+	<!-- Error [1093] [HY000]: You can't specify target table 'CALENDER' for update in FROM clause -->
+	<!-- 이런 에러가 발생할 경우 서브쿼리 문제이니 수정 필요 -->
+	<insert id="calendarInsert">
+		INSERT INTO CALENDER
+			( CALENDER_SEQ
+			, EVENT_NAME
+			, EVENT_DESCRIPTION
+			, EVENT_LOCATION
+			, ALL_DAY_YN
+			
+			, EVENT_START_DT
+			, EVENT_END_DT
+			, EVENT_START_TM
+			, EVENT_END_TM
+			, USER_SEQ
+			, CREATE_TIME
+			, DEL_YN
+			)
+		VALUES(
+			 (SELECT AA.CALENDER_SEQ
+				FROM (select IFNULL(max(CALENDER_SEQ)+1 , CONCAT(date_format(now(), '%y%m'),'0001')) as CALENDER_SEQ
+						from CALENDER where SUBSTR(CALENDER_SEQ,1,4) =  DATE_FORMAT(CURDATE(), '%y%m')
+				)AS AA)
+			, #{EVENT_NAME}
+			, #{EVENT_DESCRIPTION}
+			, #{EVENT_LOCATION}
+			, IFNULL(#{ALL_DAY_YN},'N')
+			
+			, #{EVENT_START_DT}
+			, #{EVENT_END_DT}
+		    , #{EVENT_START_TM}
+		    , #{EVENT_END_TM}
+		    , #{USER_SEQ}
+		    , NOW()
+		    , 'Y'
+		    )
+	</insert>
+
+</mapper>

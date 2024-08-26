@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.green.utils.ParameterInfo;
 import com.green.user.service.UserService;
+import com.green.user.vo.CalendarVo;
 import com.green.user.vo.UserVo;
 
 @Controller
@@ -61,8 +62,33 @@ public class UserController{
 	//	return "list_user";     
 		
 	}  
+
+
+	//달력
+	@RequestMapping("/api/calendar")
+	@ResponseBody
+	public List<CalendarVo> calendarList(Model model) {
+		
+		/*
+		 * List<CalendarVo> list = userService.getCalendarList();
+		 * model.addAttribute("calendarList", list);
+		 * 
+		 * return "home";
+		 */
+		//json형식으로 보내려고
+		return userService.getCalendarList();
+		
+	}
 	
-	
+	@RequestMapping("/insertCalendar")
+	public  String  insertCalendar (CalendarVo vo) {
+
+		System.out.println("start==============================================================");
+		// db 저장
+		userService.insertCalendar(vo);
+		
+		return "redirect:/home";     
+	}  
 
 	
 }

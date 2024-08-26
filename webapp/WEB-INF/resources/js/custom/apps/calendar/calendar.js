@@ -113,141 +113,47 @@ var KTAppCalendar = function () {
 
             editable: true,
             dayMaxEvents: true, // allow "more" link when too many events
-            events: [
-                {
-                    id: uid(),
-                    title: 'All Day Event',
-                    start: YM + '-01',
-                    end: YM + '-02',
-                    description: 'Toto lorem ipsum dolor sit incid idunt ut',
-                    className: "fc-event-danger fc-event-solid-warning",
-                    location: 'Federation Square'
-                },
-                {
-                    id: uid(),
-                    title: 'Reporting',
-                    start: YM + '-14T13:30:00',
-                    description: 'Lorem ipsum dolor incid idunt ut labore',
-                    end: YM + '-14T14:30:00',
-                    className: "fc-event-success",
-                    location: 'Meeting Room 7.03'
-                },
-                {
-                    id: uid(),
-                    title: 'Company Trip',
-                    start: YM + '-02',
-                    description: 'Lorem ipsum dolor sit tempor incid',
-                    end: YM + '-03',
-                    className: "fc-event-primary",
-                    location: 'Seoul, Korea'
+         // **수정된 부분: AJAX를 통해 이벤트 데이터를 가져오기**
+            // 서버에서 이벤트를 가져오기
+            events: function(fetchInfo, successCallback, failureCallback) {
+                // **AJAX 요청**
+            	$.ajax({
+                    url: '/api/calendar', // URL for fetching events
+                    method: 'GET',
+                    success: function(data) {
+                        console.log('서버 응답 데이터:', data);
+                        
+                        var formattedEvents = data.map(function(event) {
+                            // Combine date and time into ISO8601 format
+                            var start = event.event_START_DT + 'T' + event.event_START_TM;
+                            var end = event.event_END_DT + 'T' + event.event_END_TM;
+                            
+                            // Handle cases where end date should be the next day
+                            var endDate = moment(end).add(1, 'minute').format();
+                            
+                            return {
+                                id: event.calender_SEQ, // VO variable for id
+                                title: event.event_NAME, // Event title
+                                start: start, // Start date and time
+                                end: endDate, // End date and time, adjusting for full-day events
+                                description: event.event_DESCRIPTION, // Event description
+                                location: event.event_LOCATION, // Event location
+                                allDay: event.all_DAY_YN === 'Y' // All day event flag
+                            };
+                        });
 
-                },
-                {
-                    id: uid(),
-                    title: 'ICT Expo 2021 - Product Release',
-                    start: YM + '-03',
-                    description: 'Lorem ipsum dolor sit tempor inci',
-                    end: YM + '-05',
-                    className: "fc-event-light fc-event-solid-primary",
-                    location: 'Melbourne Exhibition Hall'
-                },
-                {
-                    id: uid(),
-                    title: 'Dinner',
-                    start: YM + '-12',
-                    description: 'Lorem ipsum dolor sit amet, conse ctetur',
-                    end: YM + '-13',
-                    location: 'Squire\'s Loft'
-                },
-                {
-                    id: uid(),
-                    title: 'Repeating Event',
-                    start: YM + '-09T16:00:00',
-                    end: YM + '-09T17:00:00',
-                    description: 'Lorem ipsum dolor sit ncididunt ut labore',
-                    className: "fc-event-danger",
-                    location: 'General Area'
-                },
-                {
-                    id: uid(),
-                    title: 'Repeating Event',
-                    description: 'Lorem ipsum dolor sit amet, labore',
-                    start: YM + '-16T16:00:00',
-                    end: YM + '-16T17:00:00',
-                    location: 'General Area'
-                },
-                {
-                    id: uid(),
-                    title: 'Conference',
-                    start: YESTERDAY,
-                    end: TOMORROW,
-                    description: 'Lorem ipsum dolor eius mod tempor labore',
-                    className: "fc-event-primary",
-                    location: 'Conference Hall A'
-                },
-                {
-                    id: uid(),
-                    title: 'Meeting',
-                    start: TODAY + 'T10:30:00',
-                    end: TODAY + 'T12:30:00',
-                    description: 'Lorem ipsum dolor eiu idunt ut labore',
-                    location: 'Meeting Room 11.06'
-                },
-                {
-                    id: uid(),
-                    title: 'Lunch',
-                    start: TODAY + 'T12:00:00',
-                    end: TODAY + 'T14:00:00',
-                    className: "fc-event-info",
-                    description: 'Lorem ipsum dolor sit amet, ut labore',
-                    location: 'Cafeteria'
-                },
-                {
-                    id: uid(),
-                    title: 'Meeting',
-                    start: TODAY + 'T14:30:00',
-                    end: TODAY + 'T15:30:00',
-                    className: "fc-event-warning",
-                    description: 'Lorem ipsum conse ctetur adipi scing',
-                    location: 'Meeting Room 11.10'
-                },
-                {
-                    id: uid(),
-                    title: 'Happy Hour',
-                    start: TODAY + 'T17:30:00',
-                    end: TODAY + 'T21:30:00',
-                    className: "fc-event-info",
-                    description: 'Lorem ipsum dolor sit amet, conse ctetur',
-                    location: 'The English Pub'
-                },
-                {
-                    id: uid(),
-                    title: 'Dinner',
-                    start: TOMORROW + 'T18:00:00',
-                    end: TOMORROW + 'T21:00:00',
-                    className: "fc-event-solid-danger fc-event-light",
-                    description: 'Lorem ipsum dolor sit ctetur adipi scing',
-                    location: 'New York Steakhouse'
-                },
-                {
-                    id: uid(),
-                    title: 'Birthday Party',
-                    start: TOMORROW + 'T12:00:00',
-                    end: TOMORROW + 'T14:00:00',
-                    className: "fc-event-primary",
-                    description: 'Lorem ipsum dolor sit amet, scing',
-                    location: 'The English Pub'
-                },
-                {
-                    id: uid(),
-                    title: 'Site visit',
-                    start: YM + '-28',
-                    end: YM + '-29',
-                    className: "fc-event-solid-info fc-event-light",
-                    description: 'Lorem ipsum dolor sit amet, labore',
-                    location: '271, Spring Street'
-                }
-            ],
+                        console.log('변환된 이벤트 데이터:', formattedEvents);
+
+                        successCallback(formattedEvents);
+                    },
+                    error: function() {
+                        console.error('이벤트 데이터를 가져오는 데 실패했습니다.');
+                        failureCallback();
+                    }
+                });
+            },
+            // **수정된 부분 끝**
+
 
             // Reset popovers when changing calendar views --- more info: https://fullcalendar.io/docs/datesSet
             datesSet: function(){
@@ -307,21 +213,21 @@ var KTAppCalendar = function () {
             form,
             {
                 fields: {
-                    'calendar_event_name': {
+                    'EVENT_NAME': {
                         validators: {
                             notEmpty: {
                                 message: 'Event name is required'
                             }
                         }
                     },
-                    'calendar_event_start_date': {
+                    'EVENT_START_DT': {
                         validators: {
                             notEmpty: {
                                 message: 'Start date is required'
                             }
                         }
                     },
-                    'calendar_event_end_date': {
+                    'EVENT_END_DT': {
                         validators: {
                             notEmpty: {
                                 message: 'End date is required'
@@ -433,6 +339,8 @@ var KTAppCalendar = function () {
                         setTimeout(function () {
                             // Simulate form submission
                             submitButton.removeAttribute('data-kt-indicator');
+                            
+                            //submitButton.submit();
 
                             // Show popup confirmation 
                             Swal.fire({
@@ -485,7 +393,7 @@ var KTAppCalendar = function () {
                                 }
                             });
 
-                            //form.submit(); // Submit form
+                            form.submit(); // Submit form
                         }, 2000);
                     } else {
                         // Show popup warning 
@@ -849,9 +757,9 @@ var KTAppCalendar = function () {
             // Add event modal
             const element = document.getElementById('kt_modal_add_event');
             form = element.querySelector('#kt_modal_add_event_form');
-            eventName = form.querySelector('[name="calendar_event_name"]');
-            eventDescription = form.querySelector('[name="calendar_event_description"]');
-            eventLocation = form.querySelector('[name="calendar_event_location"]');
+            eventName = form.querySelector('[name="EVENT_NAME"]');
+            eventDescription = form.querySelector('[name="EVENT_DESCRIPTION"]');
+            eventLocation = form.querySelector('[name="EVENT_LOCATION"]');
             startDatepicker = form.querySelector('#kt_calendar_datepicker_start_date');
             endDatepicker = form.querySelector('#kt_calendar_datepicker_end_date');
             startTimepicker = form.querySelector('#kt_calendar_datepicker_start_time');
@@ -892,3 +800,75 @@ var KTAppCalendar = function () {
 KTUtil.onDOMContentLoaded(function () {
     KTAppCalendar.init();
 });
+
+
+
+/* ajax 참고 
+ * 
+ * "use strict";
+
+// Class definition
+var KTAppCalendar = function () {
+    var calendar;
+
+    // Initialize calendar
+    var initCalendarApp = function () {
+        var calendarEl = document.getElementById('kt_calendar_app');
+        
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            initialDate: moment().format('YYYY-MM-DD'),
+            navLinks: true,
+            selectable: true,
+            selectMirror: true,
+            editable: true,
+            dayMaxEvents: true,
+            events: [], // Initial empty array for events
+            datesSet: function() {
+                hidePopovers();
+            }
+        });
+
+        calendar.render();
+    }
+
+    // Fetch JSON data using jQuery AJAX and update calendar
+    const loadEvents = () => {
+        $.ajax({
+            url: '/api/events', // Your API endpoint here
+            method: 'GET',
+            dataType: 'json',
+            success: function(events) {
+                // Add events to calendar
+                calendar.addEventSource(events);
+                calendar.render();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error fetching events:', textStatus, errorThrown);
+            }
+        });
+    }
+
+    // Initialize functions
+    const init = () => {
+        initCalendarApp();
+        loadEvents(); // Load events from JSON
+    }
+
+    return {
+        init: init
+    };
+}();
+
+// Initialize app
+$(document).ready(function() {
+    KTAppCalendar.init();
+});
+
+ * 
+ * 
+ * */
