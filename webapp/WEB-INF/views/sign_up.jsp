@@ -19,7 +19,7 @@
         <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(media/illustrations/sketchy-1/14.png)">
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
                 <a href="../../demo1/dist/index.html" class="mb-12">
-                    <img alt="Logo" src="media/logos/logo-1.svg" class="h-40px" />
+                    <img alt="Logo" src="media/logos/logo_new.png" class="h-60px" />
                 </a>
                 <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                     <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form" action="/User/Write" method="post">
@@ -59,7 +59,7 @@
                             <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="USER_ID" autocomplete="off" />
                         </div>
                         <div class="fv-row mb-10">
-                            <label class="form-label fw-bolder text-dark fs-6">Password</label>
+                            <label class="form-label fw-bolder text-dark fs-6">비밀번호</label>
                             <div class="position-relative mb-3">
                                 <input type="password"  class="form-control form-control-lg form-control-solid" placeholder="" name="USER_PW" autocomplete="off" />
                                 <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" id="password-visibility-toggle">
@@ -76,7 +76,7 @@
                             <div class="text-muted">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
                         </div>
                         <div class="fv-row mb-10">
-                            <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
+                            <label class="form-label fw-bolder text-dark fs-6">비밀번호확인</label>
                             <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm-password" autocomplete="off" />
                         </div>
                         <div class="fv-row mb-10">

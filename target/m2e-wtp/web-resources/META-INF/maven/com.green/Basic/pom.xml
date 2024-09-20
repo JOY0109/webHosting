@@ -32,8 +32,9 @@
 	<dependency>
 	    <groupId>mysql</groupId>
 	    <artifactId>mysql-connector-java</artifactId>
-	    <version>8.0.11</version>
+	    <version>8.0.33</version> <!-- 최신 버전으로 업데이트 8.0.11-->
 	</dependency>
+
 		
 	<!-- 컨넥션 풀을 위한 라리브러리 commons-dbcp 1.4 -->
 	<dependency>
@@ -41,6 +42,18 @@
 	    <artifactId>commons-dbcp</artifactId>
 	    <version>1.4</version>
 	</dependency>	
+	<dependency>
+	    <groupId>com.zaxxer</groupId>
+	    <artifactId>HikariCP</artifactId>
+	    <version>5.0.1</version> <!-- HikariCP의 최신 버전을 사용 -->
+	</dependency>
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-core</artifactId>
+	    <version>6.2.7.Final</version> 
+	</dependency>
+	
+	
 	<!-- for Apache Commons -->
 	<dependency>
 		<groupId>commons-collections</groupId>
@@ -89,6 +102,12 @@
 
 	<!-- jstl 1.2 사용 패키지가 javax.servlet 인것 -->
 	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.0.1</version>
+	    <scope>provided</scope>
+	</dependency>
+ 	<dependency>
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>jstl</artifactId>
 	    <version>1.2</version>

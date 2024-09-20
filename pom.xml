@@ -50,7 +50,7 @@
 	<dependency>
 	    <groupId>org.hibernate</groupId>
 	    <artifactId>hibernate-core</artifactId>
-	    <version>6.2.7.Final</version> <!-- 사용하는 Hibernate 버전에 맞는 최신 버전 -->
+	    <version>6.2.7.Final</version> 
 	</dependency>
 	
 	

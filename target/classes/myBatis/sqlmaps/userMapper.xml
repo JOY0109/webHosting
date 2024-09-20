@@ -32,7 +32,7 @@
   </select>
   
   <insert id="UserInsert">
-	    INSERT INTO joy0109.USER_INFO (
+	    INSERT INTO USER_INFO (
 			USER_SEQ
 		  , USER_NAME
 		  , USER_EMP_NUM

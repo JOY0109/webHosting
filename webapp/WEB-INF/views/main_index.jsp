@@ -25,9 +25,7 @@
 				<!--begin::Content-->
 				<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 					<!--begin::Logo-->
-					<a href="../../demo1/dist/index.html" class="mb-12">
-						<img alt="Logo" src="media/logos/logo-1.svg" class="h-40px" />
-					</a>
+					<img alt="Logo" src="media/logos/logo_new.png" class="h-60px" />
 					<!--end::Logo-->
 					<!--begin::Wrapper-->
 					<div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
@@ -36,11 +34,12 @@
 							<!--begin::Heading-->
 							<div class="text-center mb-10">
 								<!--begin::Title-->
-								<h1 class="text-dark mb-3">Welcome Home</h1>
+								<h1 class="text-dark mb-3">편한 일정관리,의사소통을 위한<br>협업툴입니다</h1>
 								<!--end::Title-->
 								<!--begin::Link-->
-								<div class="text-gray-400 fw-bold fs-4">New Here?
-								<a href="/User/WriteForm" class="link-primary fw-bolder">Create an Account</a></div>
+								<div class="text-gray-400 fw-bold fs-4">
+									<a href="/User/WriteForm" class="link-primary fw-bolder">계정만들기</a>
+								</div>
 								<!--end::Link-->
 							</div>
 							<!--begin::Heading-->
@@ -62,7 +61,7 @@
 									<label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
 									<!--end::Label-->
 									<!--begin::Link-->
-									<a href="../../demo1/dist/authentication/layouts/basic/password-reset.html" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
+									<!-- <a href="../../demo1/dist/authentication/layouts/basic/password-reset.html" class="link-primary fs-6 fw-bolder">비밀번호찾기?</a> -->
 									<!--end::Link-->
 								</div>
 								<!--end::Wrapper-->
