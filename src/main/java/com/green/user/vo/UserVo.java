@@ -18,12 +18,13 @@ public class UserVo {
 	private String LEVEL;
 	private String JOIN_DATE;
 	private String UPDATE_DATE;
+	private String ROLE_NAME;
 
 	
 	
 	public UserVo() {}
 	public UserVo(String USER_SEQ ,String USER_NAME ,String USER_EMP_NUM ,String USER_BIRTH ,String USER_ID ,String USER_PW ,String USER_TEL1 ,String USER_TEL2 ,String USER_DEP_NUM ,String USER_NICK 
-			,String AUTH ,String LEVEL ,String JOIN_DATE ,String UPDATE_DATE ) {
+			,String AUTH ,String LEVEL ,String JOIN_DATE ,String UPDATE_DATE,String ROLE_NAME ) {
 		this.USER_SEQ		 = USER_SEQ;
 		this.USER_NAME       = USER_NAME;
 		this.USER_EMP_NUM    = USER_EMP_NUM;
@@ -38,8 +39,17 @@ public class UserVo {
 		this.LEVEL           = LEVEL;
 		this.JOIN_DATE       = JOIN_DATE;
 		this.UPDATE_DATE     = UPDATE_DATE;
+		this.ROLE_NAME       = ROLE_NAME;
 	}
 	
+	
+	
+	public String getROLE_NAME() {
+		return ROLE_NAME;
+	}
+	public void setROLE_NAME(String rOLE_NAME) {
+		ROLE_NAME = rOLE_NAME;
+	}
 	public String getUSER_SEQ() {
 		return USER_SEQ;
 	}
