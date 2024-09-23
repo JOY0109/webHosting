@@ -18,9 +18,11 @@
 		 , USER_NICK
 		 , AUTH
 		 , `LEVEL`
-		 , JOIN_DATE
-		 , UPDATE_DATE
-	FROM USER_INFO;
+		 , a.JOIN_DATE
+		 , a.UPDATE_DATE
+		 , ROLE_NAME
+	FROM USER_INFO a
+	join USER_ROLE b on a.`LEVEL` = b.ROLE_LEVEL 
   </select>
   
   <select id="loginChk" resultType="int">
